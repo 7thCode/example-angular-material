@@ -5,16 +5,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import {FormsModule} from '@angular/forms';
+
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field'
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 import { AbcComponent } from './abc/abc.component';
 import { XyzComponent } from './xyz/xyz.component';
+import {MatCardModule} from '@angular/material/card';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +36,9 @@ import { XyzComponent } from './xyz/xyz.component';
     MatMenuModule,
     MatButtonModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    FormsModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,7 @@
-<p>xyz works!</p>
+
+<form #form="ngForm">
+  <div>{{name}}</div>
+  <mat-form-field>
+    <input matInput type="text" [(ngModel)]="name" name="name">
+  </mat-form-field>
+</form>
