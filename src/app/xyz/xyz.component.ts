@@ -9,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
 export class XyzComponent implements OnInit {
 
   public username: string;
+  public password: string;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  public login() {
+
   }
 
 }
