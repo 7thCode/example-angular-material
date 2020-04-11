@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 
 export class XyzComponent implements OnInit {
 
-  public name: string;
+  public username: string;
 
   constructor() { }
 
