@@ -24,10 +24,19 @@ export class XyzComponent implements OnInit {
 
 	public login() {
 		this.service.login(this.username, this.password, (result) => {
-			if (result.code === 0) {
-				this.snackbar.open("login", "Ok", {
-					duration: 3000,
-				});
+
+			switch (result.code) {
+				case 0:
+					this.snackbar.open("login", "Ok", {
+						duration: 3000,
+					});
+					break;
+				case -1:
+					this.snackbar.open("Error", "Ok", {
+						duration: 3000,
+					});
+					break;
+				default:
 			}
 		});
 	}
