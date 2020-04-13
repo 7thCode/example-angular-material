@@ -1,26 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 
 @Component({
-  selector: 'app-abc',
-  templateUrl: './abc.component.html',
-  styleUrls: ['./abc.component.css']
+	selector: "app-abc",
+	templateUrl: "./abc.component.html",
+	styleUrls: ["./abc.component.css"],
 })
 export class AbcComponent implements OnInit {
 
-  public name: string;
-  public flag: boolean;
-  public color: string = "warn";
+	public name: string;
+	public flag: boolean;
+	public color: string = "warn";
 
-  constructor() {
-   }
+	constructor() {
+	}
 
-  ngOnInit(): void {
-    this.name = "";
-    this.flag = true;
-  }
+	public ngOnInit(): void {
+		this.name = "";
+		this.flag = true;
+	}
 
-  onChange() {
-    this.flag = !this.flag;
-  }
+	public onChange() {
+		this.flag = !this.flag;
+	}
 
 }

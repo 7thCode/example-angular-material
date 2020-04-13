@@ -1,10 +1,8 @@
 <form class="example-form">
 
   <div>{{name}}</div>
-  <button mat-raised-button color="primary" [color]="false" [disabled]="flag">Primary</button>
-
-
-  <mat-form-field class="example-full-width">
+	<button mat-raised-button color="primary" [color]="false" [disabled]="flag">Primary</button>
+	<mat-form-field class="example-full-width">
     <mat-label>Favorite food</mat-label>
     <input matInput type="text" placeholder="Ex. Pizza" (change)="onChange();" >
   </mat-form-field>
@@ -13,4 +11,5 @@
     <mat-label>Leave a comment</mat-label>
     <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
   </mat-form-field>
+
 </form>
