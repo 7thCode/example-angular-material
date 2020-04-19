@@ -1,15 +1,18 @@
 <form class="example-form">
 
-  <div>{{name}}</div>
-	<button mat-raised-button color="primary" [color]="false" [disabled]="flag">Primary</button>
+	<button mat-raised-button color="primary" (click)="onChange()">Insert</button>
 	<mat-form-field class="example-full-width">
-    <mat-label>Favorite food</mat-label>
-    <input matInput type="text" placeholder="Ex. Pizza" (change)="onChange();" >
-  </mat-form-field>
+		<mat-label>Favorite food</mat-label>
+		<input matInput type="text" placeholder="Ex. Pizza" [(ngModel)]="food" name="food_name">
+	</mat-form-field>
 
-  <mat-form-field class="example-full-width">
-    <mat-label>Leave a comment</mat-label>
-    <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
-  </mat-form-field>
+	<mat-form-field class="example-full-width">
+		<mat-label>Leave a comment</mat-label>
+		<textarea matInput placeholder="Ex. It makes me feel..." [(ngModel)]="comment" name="comment"></textarea>
+	</mat-form-field>
+
+	<button mat-raised-button color="primary" (click)="onQuery()">Query</button>
+
+	<div
 
 </form>

@@ -5,7 +5,7 @@ import {Injectable} from "@angular/core";
 	providedIn: "root",
 })
 
-export class LoginService {
+export class DataService {
 
 	private httpOptions: any;
 
@@ -21,19 +21,23 @@ export class LoginService {
 		};
 	}
 
-	public login(username: string, password: string, callback: (result) => void): void {
-		this.http.post("/login", {username: username, password: password}, this.httpOptions)
-			.subscribe(
-
-				(result: any): void => {
+	public insert(data: any, callback: (result) => void): void {
+		this.http.post("/insert", data, this.httpOptions)
+			.subscribe((result: any): void => {
 					callback(result);
-				},
-
-				(error: HttpErrorResponse): void => {
+				}, (error: HttpErrorResponse): void => {
 					callback({code: -2, value: error.message});
 				},
-
 			);
 	}
 
+	public query(query: any, callback: (result) => void): void {
+		this.http.get("/query/" + JSON.stringify(query) , this.httpOptions)
+			.subscribe((result: any): void => {
+					callback(result);
+				}, (error: HttpErrorResponse): void => {
+					callback({code: -2, value: error.message});
+				},
+			);
+	}
 }

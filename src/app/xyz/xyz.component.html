@@ -8,7 +8,7 @@
 				<div>
 					<mat-form-field>
 						<mat-label>Username</mat-label>
-						<input matInput type="text" placeholder="ex. Taro yamada" [(ngModel)]="username" #username_field="ngModel" name="use>rname_name" required minlength="6" maxlength="32">
+						<input matInput type="text" placeholder="ex. Taro yamada" [(ngModel)]="username" #username_field="ngModel" name="username_name" required minlength="6" maxlength="32">
 						<mat-hint>6文字以上32文字まで</mat-hint>
 						<mat-error *ngIf="username_field.errors?.required;">入力してください</mat-error>
 						<mat-error *ngIf="username_field.errors?.maxlength">長すぎます</mat-error>
