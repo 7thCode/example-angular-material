@@ -13,4 +13,9 @@
 
 	<button mat-raised-button color="primary" (click)="onQuery()">Query</button>
 
+	<div *ngFor="let item of items">
+		{{item.food}}
+		{{item.comment}}
+	</div>
+
 </form>

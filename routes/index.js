@@ -41,7 +41,7 @@ router.post('/insert', function (req, res, next) {
 
 
 router.get('/query/:queryformula', function (req, res, next) {
-	const queryformula = params.queryformula;
+	const queryformula = req.params.queryformula;
 	MongoClient.connect('mongodb://localhost', (err, client) => {
 		if (!err) {
 			const db = client.db("myDB");
