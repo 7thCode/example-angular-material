@@ -9,19 +9,28 @@ import {DataService} from "../data.service";
 
 export class AbcComponent implements OnInit {
 
+	public name: string;
 	public food: string;
 	public comment: string;
 	public items: any[];
 
-	constructor(private data: DataService) {
+	constructor(
+		private data: DataService,
+	) {
 	}
 
 	public ngOnInit(): void {
 	}
 
 	public onChange() {
-		this.data.insert({food: this.food, comment: this.comment}, (result) => {
+		this.data.insert({food: this.food, name: this.name, comment: this.comment}, (result) => {
 			if (result.code === 0) {
+
+				this.data.query({}, (result) => {
+					if (result.code === 0) {
+						this.items = result.value;
+					}
+				});
 
 			}
 		});

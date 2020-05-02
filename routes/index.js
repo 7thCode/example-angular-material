@@ -47,7 +47,8 @@ router.get('/query/:queryformula', function (req, res, next) {
 			const db = client.db("myDB");
 			db.collection("myCollection", (err2, collection) => {
 				if (!err2) {
-					collection.find(queryformula).toArray((err3, result) => {
+					const queryobject = JSON.parse(queryformula);
+					collection.find(queryobject).toArray((err3, result) => {
 						if (!err3) {
 							res.json({code: 0, value: result});
 							client.close();

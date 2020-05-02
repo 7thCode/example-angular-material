@@ -1,9 +1,15 @@
 <form class="example-form">
 
 	<button mat-raised-button color="primary" (click)="onChange()">Insert</button>
+
 	<mat-form-field class="example-full-width">
 		<mat-label>Favorite food</mat-label>
 		<input matInput type="text" placeholder="Ex. Pizza" [(ngModel)]="food" name="food_name">
+	</mat-form-field>
+
+	<mat-form-field class="example-full-width">
+		<mat-label>Name</mat-label>
+		<input matInput type="text" placeholder="Ex. Pizza" [(ngModel)]="name" name="name_name">
 	</mat-form-field>
 
 	<mat-form-field class="example-full-width">
@@ -14,8 +20,9 @@
 	<button mat-raised-button color="primary" (click)="onQuery()">Query</button>
 
 	<div *ngFor="let item of items">
-		{{item.food}}
-		{{item.comment}}
+		<div>Food:   {{item.food}}</div>
+		<div>Name:   {{item.name}}</div>
+		<div>Comment: {{item.comment}}</div>
 	</div>
 
 </form>
