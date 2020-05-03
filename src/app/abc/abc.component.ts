@@ -17,26 +17,30 @@ export class AbcComponent implements OnInit {
 	constructor(
 		private data: DataService,
 	) {
+		this.query();
 	}
 
 	public ngOnInit(): void {
+		this.query();
 	}
 
 	public onChange() {
 		this.data.insert({food: this.food, name: this.name, comment: this.comment}, (result) => {
 			if (result.code === 0) {
-
-				this.data.query({}, (result) => {
-					if (result.code === 0) {
-						this.items = result.value;
-					}
-				});
-
+				this.query();
 			}
 		});
 	}
 
-	public onQuery() {
+	public onDelete(id: string) {
+		this.data.delete(id, (result) => {
+			if (result.code === 0) {
+				this.query();
+			}
+		});
+	}
+
+	public query() {
 		this.data.query({}, (result) => {
 			if (result.code === 0) {
 				this.items = result.value;

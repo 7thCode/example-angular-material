@@ -43,10 +43,10 @@
 					<div fxFlex="20%" style="background-color: #f0f8ff">{{item.name}}</div>
 					<div fxFlex style="background-color: #fff8f0">{{item.comment}}</div>
 					<div style="background-color: #f0f8ff">
-						<button mat-icon-button  (click)="onChange()">
+						<button mat-icon-button (click)="onChange()">
 							<mat-icon color="primary" style="font-size:20px;">edit</mat-icon>
 						</button>
-						<button mat-icon-button  (click)="onChange()">
+						<button mat-icon-button  (click)="onDelete(item._id)">
 							<mat-icon color="warn" style="font-size:20px;">delete_sweep</mat-icon>
 						</button>
 					</div>

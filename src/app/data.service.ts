@@ -31,8 +31,18 @@ export class DataService {
 			);
 	}
 
+	public delete(id: string, callback: (result) => void): void {
+		this.http.delete("/delete/" + encodeURIComponent(id), this.httpOptions)
+			.subscribe((result: any): void => {
+					callback(result);
+				}, (error: HttpErrorResponse): void => {
+					callback({code: -2, value: error.message});
+				},
+			);
+	}
+
 	public query(query: any, callback: (result) => void): void {
-		this.http.get("/query/" + JSON.stringify(query) , this.httpOptions)
+		this.http.get("/query/" + encodeURIComponent(JSON.stringify(query)), this.httpOptions)
 			.subscribe((result: any): void => {
 					callback(result);
 				}, (error: HttpErrorResponse): void => {
