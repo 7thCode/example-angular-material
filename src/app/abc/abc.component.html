@@ -1,28 +1,63 @@
-<form class="example-form">
+<div fxLayout="column">
 
-	<button mat-raised-button color="primary" (click)="onChange()">Insert</button>
+	<mat-card style="margin:6px;">
+		<mat-card-content>
+			<form>
+				<div fxLayout="row" fxLayoutAlign="space-between">
 
-	<mat-form-field class="example-full-width">
-		<mat-label>Favorite food</mat-label>
-		<input matInput type="text" placeholder="Ex. Pizza" [(ngModel)]="food" name="food_name">
-	</mat-form-field>
+					<mat-form-field>
+						<mat-label>Favorite food</mat-label>
+						<input matInput type="text" placeholder="Ex. Pizza" [(ngModel)]="food" name="food_name">
+					</mat-form-field>
 
-	<mat-form-field class="example-full-width">
-		<mat-label>Name</mat-label>
-		<input matInput type="text" placeholder="Ex. Pizza" [(ngModel)]="name" name="name_name">
-	</mat-form-field>
+					<mat-form-field>
+						<mat-label>Name</mat-label>
+						<input matInput type="text" placeholder="" [(ngModel)]="name" name="name_name">
+					</mat-form-field>
 
-	<mat-form-field class="example-full-width">
-		<mat-label>Leave a comment</mat-label>
-		<textarea matInput placeholder="Ex. It makes me feel..." [(ngModel)]="comment" name="comment"></textarea>
-	</mat-form-field>
+					<mat-form-field>
+						<mat-label>Leave a comment</mat-label>
+						<input matInput placeholder="Ex. It makes me feel..." [(ngModel)]="comment" name="comment">
+					</mat-form-field>
 
-	<button mat-raised-button color="primary" (click)="onQuery()">Query</button>
+					<div style="margin:6px;">
+						<button fxLayoutAlign="center" mat-raised-button color="primary" (click)="onChange()">Insert</button>
+					</div>
+				</div>
+			</form>
+		</mat-card-content>
+	</mat-card>
 
-	<div *ngFor="let item of items">
-		<div>Food:   {{item.food}}</div>
-		<div>Name:   {{item.name}}</div>
-		<div>Comment: {{item.comment}}</div>
-	</div>
+	<mat-card style="margin:6px;">
+		<mat-card-content style="text-align: center">
+			<div fxLayout="column">
+				<div fxLayout="row" style="background-color: #f0f0f0">
+					<div fxFlex="5%"></div>
+					<div fxFlex="20%">Food</div>
+					<div fxFlex="20%">Name</div>
+					<div fxFlex>Comment</div>
+				</div>
+				<div *ngFor="let item of items;index as rows" fxLayout="row" style="border-bottom-style: ridge;line-height:36px;">
+					<div fxFlex="5%" style="background-color: #f0f0f0">{{rows + 1}}</div>
+					<div fxFlex="20%" style="background-color: #fff8f0">{{item.food}}</div>
+					<div fxFlex="20%" style="background-color: #f0f8ff">{{item.name}}</div>
+					<div fxFlex style="background-color: #fff8f0">{{item.comment}}</div>
+					<div style="background-color: #f0f8ff">
+						<button mat-icon-button  (click)="onChange()">
+							<mat-icon color="primary" style="font-size:20px;">edit</mat-icon>
+						</button>
+						<button mat-icon-button  (click)="onChange()">
+							<mat-icon color="warn" style="font-size:20px;">delete_sweep</mat-icon>
+						</button>
+					</div>
+				</div>
+			</div>
+		</mat-card-content>
+	</mat-card>
 
-</form>
+</div>
+
+
+
+
+

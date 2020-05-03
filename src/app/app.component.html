@@ -22,13 +22,13 @@
 
 <mat-drawer-container class="example-container" autosize>
 
-	<mat-drawer #drawer class="example-sidenav" mode="side">
-		<p>
+	<mat-drawer fxLayout="column" #drawer class="example-sidenav" mode="side">
+		<div>
 			<a mat-button routerLink="/abc">abc</a>
-		</p>
-		<p>
+		</div>
+		<div>
 			<a mat-button routerLink="/xyz">xyz</a>
-		</p>
+		</div>
 	</mat-drawer>
 
 	<div class="example-sidenav-content" style="background-color:#dddddd;">
