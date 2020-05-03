@@ -19,15 +19,20 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatTableModule} from "@angular/material/table";
 import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatDialogModule} from "@angular/material/dialog";
 
 import {AbcComponent} from "./abc/abc.component";
+// import { UpdateDialogComponent } from "./abc/update-dialog/update-dialog.component";
 import {XyzComponent} from "./xyz/xyz.component";
+import {UpdateDialogComponent} from "./abc/update-dialog/update-dialog.component";
+
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		AbcComponent,
 		XyzComponent,
+		UpdateDialogComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -48,6 +53,7 @@ import {XyzComponent} from "./xyz/xyz.component";
 		MatCardModule,
 		MatSnackBarModule,
 		MatTableModule,
+		MatDialogModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent],

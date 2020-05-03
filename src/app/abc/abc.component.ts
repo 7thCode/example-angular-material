@@ -1,5 +1,7 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, Inject, OnInit} from "@angular/core";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {DataService} from "../data.service";
+import {UpdateDialogComponent} from "./update-dialog/update-dialog.component";
 
 @Component({
 	selector: "app-abc",
@@ -15,6 +17,7 @@ export class AbcComponent implements OnInit {
 	public items: any[];
 
 	constructor(
+		public dialog: MatDialog,
 		private data: DataService,
 	) {
 		this.query();
@@ -40,6 +43,29 @@ export class AbcComponent implements OnInit {
 		});
 	}
 
+	public onUpdate(id: string): void {
+		this.data.get(id, (result) => {
+			if (result.code === 0) {
+
+				const dialogRef = this.dialog.open(UpdateDialogComponent, {
+					width: "60vw",
+					data: result.value,
+				});
+
+				dialogRef.afterClosed().subscribe((result) => {
+					const id = result._id;
+					const update = { $set: {food: result.food, name: result.name, comment: result.comment}};
+					this.data.update(id, update, (result) => {
+						if (result.code === 0) {
+							this.query();
+						}
+					});
+				});
+
+			}
+		});
+	}
+
 	public query() {
 		this.data.query({}, (result) => {
 			if (result.code === 0) {
@@ -49,3 +75,5 @@ export class AbcComponent implements OnInit {
 	}
 
 }
+
+

@@ -31,6 +31,16 @@ export class DataService {
 			);
 	}
 
+	public update(id: string, data: any, callback: (result) => void): void {
+		this.http.put("/update/" + encodeURIComponent(id), data, this.httpOptions)
+			.subscribe((result: any): void => {
+					callback(result);
+				}, (error: HttpErrorResponse): void => {
+					callback({code: -2, value: error.message});
+				},
+			);
+	}
+
 	public delete(id: string, callback: (result) => void): void {
 		this.http.delete("/delete/" + encodeURIComponent(id), this.httpOptions)
 			.subscribe((result: any): void => {
@@ -50,4 +60,17 @@ export class DataService {
 				},
 			);
 	}
+
+	public get(id: string, callback: (result) => void): void {
+		this.http.get("/get/" + encodeURIComponent(id), this.httpOptions)
+			.subscribe((result: any): void => {
+					callback(result);
+				}, (error: HttpErrorResponse): void => {
+					callback({code: -2, value: error.message});
+				},
+			);
+	}
+
+
+
 }
