@@ -21,6 +21,26 @@ export class DataService {
 		};
 	}
 
+	public query(query: any, callback: (result) => void): void {
+		this.http.get("/query/" + encodeURIComponent(JSON.stringify(query)), this.httpOptions)
+			.subscribe((result: any): void => {
+					callback(result);
+				}, (error: HttpErrorResponse): void => {
+					callback({code: -2, value: error.message});
+				},
+			);
+	}
+
+	public get(id: string, callback: (result) => void): void {
+		this.http.get("/get/" + encodeURIComponent(id), this.httpOptions)
+			.subscribe((result: any): void => {
+					callback(result);
+				}, (error: HttpErrorResponse): void => {
+					callback({code: -2, value: error.message});
+				},
+			);
+	}
+
 	public insert(data: any, callback: (result) => void): void {
 		this.http.post("/insert", data, this.httpOptions)
 			.subscribe((result: any): void => {
@@ -50,27 +70,4 @@ export class DataService {
 				},
 			);
 	}
-
-	public query(query: any, callback: (result) => void): void {
-		this.http.get("/query/" + encodeURIComponent(JSON.stringify(query)), this.httpOptions)
-			.subscribe((result: any): void => {
-					callback(result);
-				}, (error: HttpErrorResponse): void => {
-					callback({code: -2, value: error.message});
-				},
-			);
-	}
-
-	public get(id: string, callback: (result) => void): void {
-		this.http.get("/get/" + encodeURIComponent(id), this.httpOptions)
-			.subscribe((result: any): void => {
-					callback(result);
-				}, (error: HttpErrorResponse): void => {
-					callback({code: -2, value: error.message});
-				},
-			);
-	}
-
-
-
 }

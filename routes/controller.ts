@@ -20,11 +20,11 @@ export class DBAccess {
 		});
 	}
 
-	public query(req, res): void {
-		const queryformula = decodeURIComponent(req.params.queryformula);
-		const queryobject = JSON.parse(queryformula);
+	public query(req: any, res: any): void {
+		const queryformula: string = decodeURIComponent(req.params.queryformula);
+		const queryobject: any = JSON.parse(queryformula);
 		if (this.collection) {
-			this.collection.find(queryobject).toArray((err3, result) => {
+			this.collection.find(queryobject).toArray((err3, result): void => {
 				if (!err3) {
 					res.json({code: 0, value: result});
 				} else {
@@ -34,57 +34,64 @@ export class DBAccess {
 		}
 	}
 
-	public get(req, res): void {
-		const id = decodeURIComponent(req.params.id);
+	public get(req: any, res: any): void {
+		const id: string = decodeURIComponent(req.params.id);
 		if (this.collection) {
-			this.collection.findOne({_id: ObjectID(id)}, (err3, result) => {
-				if (!err3) {
-					res.json({code: 0, value: result});
-				} else {
-					res.json({code: -1, value: err3.message});
-				}
-			});
-		}
-	}
-
-	public create(req, res): void {
-		const document = req.body;
-		if (this.collection) {
-			this.collection.insertOne(document, (error, result) => {
+			this.collection.findOne({_id: ObjectID(id)}, (error: any, result: any): void => {
 				if (!error) {
-					res.json({code: 0, value: "ok"});
+					res.json({code: 0, value: result});
 				} else {
 					res.json({code: error.code, value: error.message});
 				}
 			});
+		} else {
+			res.json({code: -1, value: "db error."});
 		}
-
 	}
 
-	public update(req, res): void {
-		const id = decodeURIComponent(req.params.id);
-		const update = req.body;
+	public create(req: any, res: any): void {
+		const document: any = req.body;
 		if (this.collection) {
-			this.collection.updateOne({_id: ObjectID(id)}, update, (err3, result) => {
-				if (!err3) {
-					res.json({code: 0, value: "ok"});
+			this.collection.insertOne(document, (error: any, result: any): void => {
+				if (!error) {
+					res.json({code: 0, value: result});
 				} else {
-					res.json({code: -1, value: err3.message});
+					res.json({code: error.code, value: error.message});
 				}
 			});
+		} else {
+			res.json({code: -1, value: "db error."});
+		}
+	}
+
+	public update(req: any, res: any): void {
+		const id: string = decodeURIComponent(req.params.id);
+		const update: any = req.body;
+		if (this.collection) {
+			this.collection.updateOne({_id: ObjectID(id)}, update, (error: any, result: any): void => {
+				if (!error) {
+					res.json({code: 0, value: result});
+				} else {
+					res.json({code: error.code, value: error.message});
+				}
+			});
+		} else {
+			res.json({code: -1, value: "db error."});
 		}
 	}
 
 	public delete(req, res): void {
-		const id = decodeURIComponent(req.params.id);
+		const id: string = decodeURIComponent(req.params.id);
 		if (this.collection) {
-			this.collection.deleteOne({_id: ObjectID(id)}, (err3, result) => {
-				if (!err3) {
-					res.json({code: 0, value: "ok"});
+			this.collection.deleteOne({_id: ObjectID(id)}, (error: any, result: any): void => {
+				if (!error) {
+					res.json({code: 0, value: result});
 				} else {
-					res.json({code: -1, value: err3.message});
+					res.json({code: error.code, value: error.message});
 				}
 			});
+		} else {
+			res.json({code: -1, value: "db error."});
 		}
 	}
 

@@ -1,8 +1,8 @@
 import {Component, OnInit} from "@angular/core";
 import {MatDialog} from "@angular/material/dialog";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 import {DataService} from "../data.service";
-
 import {UpdateDialogComponent} from "./update-dialog/update-dialog.component";
 
 @Component({
@@ -20,6 +20,7 @@ export class AbcComponent implements OnInit {
 
 	constructor(
 		public dialog: MatDialog,
+		private snackbar: MatSnackBar,
 		private data: DataService,
 	) {
 		this.query();
@@ -29,53 +30,90 @@ export class AbcComponent implements OnInit {
 		this.query();
 	}
 
-	public onChange() {
-		this.data.insert({food: this.food, name: this.name, comment: this.comment}, (result) => {
-			if (result.code === 0) {
-				this.query();
-			}
-		});
+	public onChange(): void {
+		try {
+			this.data.insert({food: this.food, name: this.name, comment: this.comment}, (result: any): void => {
+				if (result.code === 0) {
+					this.query();
+				} else {
+					this.snackbar.open(result.value, "Ok", {
+						duration: 3000,
+					});
+				}
+			});
+		} catch (e) {
+			this.snackbar.open(e.message, "Ok", {
+				duration: 3000,
+			});
+		}
 	}
 
-	public onDelete(id: string) {
-		this.data.delete(id, (result) => {
-			if (result.code === 0) {
-				this.query();
-			}
-		});
+	public onDelete(id: string): void {
+		try {
+			this.data.delete(id, (result: any): void => {
+				if (result.code === 0) {
+					this.query();
+				} else {
+					this.snackbar.open(result.value, "Ok", {
+						duration: 3000,
+					});
+				}
+			});
+		} catch (e) {
+			this.snackbar.open(e.message, "Ok", {
+				duration: 3000,
+			});
+		}
 	}
 
 	public onUpdate(id: string): void {
-		this.data.get(id, (result) => {
-			if (result.code === 0) {
+		try {
+			this.data.get(id, (result: any): void => {
+				if (result.code === 0) {
 
-				const dialogRef = this.dialog.open(UpdateDialogComponent, {
-					width: "60vw",
-					data: result.value,
-				});
-
-				dialogRef.afterClosed().subscribe((result) => {
-					const id = result._id;
-					const update = { $set: {food: result.food, name: result.name, comment: result.comment}};
-					this.data.update(id, update, (result) => {
-						if (result.code === 0) {
-							this.query();
-						}
+					const dialogRef: any = this.dialog.open(UpdateDialogComponent, {
+						width: "60vw",
+						data: result.value,
 					});
-				});
 
-			}
-		});
+					dialogRef.afterClosed().subscribe((result: any): void => {
+						const id = result._id;
+						const update = {$set: {food: result.food, name: result.name, comment: result.comment}};
+						this.data.update(id, update, (result: any): void => {
+							if (result.code === 0) {
+								this.query();
+							} else {
+								this.snackbar.open(result.value, "Ok", {
+									duration: 3000,
+								});
+							}
+						});
+					});
+				}
+			});
+		} catch (e) {
+			this.snackbar.open(e.message, "Ok", {
+				duration: 3000,
+			});
+		}
 	}
 
-	public query() {
-		this.data.query({}, (result) => {
-			if (result.code === 0) {
-				this.items = result.value;
-			}
-		});
+	public query(): void {
+		try {
+			this.data.query({}, (result: any): void => {
+				if (result.code === 0) {
+					this.items = result.value;
+				} else {
+					this.snackbar.open(result.value, "Ok", {
+						duration: 3000,
+					});
+				}
+			});
+		} catch (e) {
+			this.snackbar.open(e.message, "Ok", {
+				duration: 3000,
+			});
+		}
 	}
 
 }
-
-
