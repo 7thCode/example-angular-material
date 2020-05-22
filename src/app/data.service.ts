@@ -1,6 +1,11 @@
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 
+export interface IResult {
+	code: number;
+	value: any;
+}
+
 @Injectable({
 	providedIn: "root",
 })
@@ -21,7 +26,7 @@ export class DataService {
 		};
 	}
 
-	public query(query: any, callback: (result) => void): void {
+	public query(query: any, callback: (result: IResult) => void): void {
 		this.http.get("/query/" + encodeURIComponent(JSON.stringify(query)), this.httpOptions)
 			.subscribe((result: any): void => {
 					callback(result);
@@ -31,7 +36,7 @@ export class DataService {
 			);
 	}
 
-	public get(id: string, callback: (result) => void): void {
+	public get(id: string, callback: (result: IResult) => void): void {
 		this.http.get("/get/" + encodeURIComponent(id), this.httpOptions)
 			.subscribe((result: any): void => {
 					callback(result);
@@ -41,7 +46,7 @@ export class DataService {
 			);
 	}
 
-	public insert(data: any, callback: (result) => void): void {
+	public insert(data: any, callback: (result: IResult) => void): void {
 		this.http.post("/insert", data, this.httpOptions)
 			.subscribe((result: any): void => {
 					callback(result);
@@ -51,7 +56,7 @@ export class DataService {
 			);
 	}
 
-	public update(id: string, data: any, callback: (result) => void): void {
+	public update(id: string, data: any, callback: (result: IResult) => void): void {
 		this.http.put("/update/" + encodeURIComponent(id), data, this.httpOptions)
 			.subscribe((result: any): void => {
 					callback(result);
@@ -61,7 +66,7 @@ export class DataService {
 			);
 	}
 
-	public delete(id: string, callback: (result) => void): void {
+	public delete(id: string, callback: (result: IResult) => void): void {
 		this.http.delete("/delete/" + encodeURIComponent(id), this.httpOptions)
 			.subscribe((result: any): void => {
 					callback(result);

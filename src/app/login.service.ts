@@ -24,15 +24,12 @@ export class LoginService {
 	public login(username: string, password: string, callback: (result) => void): void {
 		this.http.post("/login", {username: username, password: password}, this.httpOptions)
 			.subscribe(
-
 				(result: any): void => {
 					callback(result);
 				},
-
 				(error: HttpErrorResponse): void => {
 					callback({code: -2, value: error.message});
 				},
-
 			);
 	}
 
