@@ -1,5 +1,5 @@
 <h1 mat-dialog-title>Update</h1>
-<div mat-dialog-content>
+<div mat-dialog-content fxLayout="column" fxLayoutAlign="space-between">
 
 	<mat-form-field>
 		<mat-label>Favorite food</mat-label>
@@ -8,16 +8,16 @@
 
 	<mat-form-field>
 		<mat-label>Name</mat-label>
-		<input matInput type="text" placeholder="" [(ngModel)]="data.name" name="name_name">
+		<input matInput type="text" placeholder="Ex. Domino" [(ngModel)]="data.name" name="name_name">
 	</mat-form-field>
 
 	<mat-form-field>
 		<mat-label>Leave a comment</mat-label>
-		<input matInput placeholder="Ex. It makes me feel..." [(ngModel)]="data.comment" name="comment_name">
+		<input matInput type="text" placeholder="Ex. It makes me feel..." [(ngModel)]="data.comment" name="comment_name">
 	</mat-form-field>
 
 </div>
-<div mat-dialog-actions>
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="space-between">
 	<button mat-raised-button color="accent" (click)="onNoClick()">Cancel</button>
 	<button mat-raised-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
 </div>

@@ -72,7 +72,7 @@ export class AbcComponent implements OnInit {
 				if (get_result.code === 0) {
 
 					const dialogRef: any = this.dialog.open(UpdateDialogComponent, {
-						width: "60vw",
+						width: "fit-content",
 						data: get_result.value,
 					});
 
