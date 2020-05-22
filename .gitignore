@@ -45,3 +45,6 @@ testem.log
 .DS_Store
 Thumbs.db
 public
+app.js
+routes/controller.js
+routes/index.js

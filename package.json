@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "node ./bin/www",
-    "build": "ng build",
+    "build": "ng build && gulp",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -25,6 +25,9 @@
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "gulp": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-typescript": "^6.0.0-alpha.1",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "mongodb": "^3.5.3",
