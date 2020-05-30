@@ -7,6 +7,21 @@ export class DBAccess {
 	private collection: any = null;
 
 	constructor() {
+
+		/*
+		MongoClient.connect("mongodb://localhost").then((client) => {
+			const _client = client;
+			const db = _client.db("myDB");
+			db.collection("myCollection", (error, collection) => {
+				if (!error) {
+					this.collection = collection;
+				}
+			});
+		}).catch((error) => {
+			console.log(error);
+		});
+		*/
+
 		MongoClient.connect("mongodb://localhost", (error, client) => {
 			if (!error) {
 				const _client = client;
@@ -18,6 +33,7 @@ export class DBAccess {
 				});
 			}
 		});
+
 	}
 
 	public query(req: any, res: any): void {

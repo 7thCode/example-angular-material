@@ -14,6 +14,21 @@ gulp.task('compile', () => {
 		.pipe(gulp.dest('./'));
 });
 
-gulp.task('default',gulp.series('compile'), () => {
+gulp.task('build',  () => {
+	return gulp.src([
+		'bin/www',
+		'public/favicon.ico',
+		'public/**/index.html',
+		'public/**/*.js',
+		'routes/**/*.js',
+		'views/**/*.pug',
+		'app.js',
+		'package.json',
+
+	], { base: './', allowEmpty: true })
+		.pipe(gulp.dest('product'));
+});
+
+gulp.task('default',gulp.series(['compile', 'build']), () => {
 
 });
